@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title class="uppercase">{% block title %}{{ title|default("Welcome!") }}!{% endblock %}</title>
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+
+    </head>
+    <body class="bg-color-accent_light">
+       {% block body %}
+       <div class="site relative min-h-screen flex flex-col lg:flex lg:flex-row">
+           {% block header %}
+               <header class="bg-color-dark lg:my-6 col-span-full font-bold min-h-header-mobile md:min-h-header-full relative">
+                   <button class="mobile-menu-button relative my-4 p-3 focus:outline-none lg:hidden bg-color-dark">
+                       <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                       </svg>
+                   </button>
+               </header>
+           {% endblock %}
+           {% block sidebar %}
+               <div class="sidebar bg-member3-darkest text-member3-lighter font-medium w-auto absolute inset-y-0 left-0 z-10 transform -translate-x-full
+                    lg:relative lg:translate-x-0 transition duration-150 ease-in-out">
+                {{ render(controller('App\\Controller\\HomeController::sidebar', {"params": params|default([])})) }}
+               </div>
+                <div class="w-full pt-2">
+               <div class="pr-5 flex justify-between">
+                   <h2 class="pl-8 pt-4 p-2 w-full text-3xl">Your are currently logged in as <strong>{{ user.firstName }} {{ user.lastName }}</strong>!</h2>
+                   <a href="{{ path("app_logout") }}" class="bg-color-dark px-8 py-3 rounded-3xl font-bold text-color-lighter md:mx-auto">Logout</a>
+               </div>
+           {% endblock %}
+
+              {% block main_content %}
+              {% endblock %}
+           </div>
+        </div>
+       {% endblock %}
+    </body>
+</html>

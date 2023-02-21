@@ -1,0 +1,15 @@
+{% extends 'modal.html.twig'%}
+
+ {% block close_button %}
+     <button type="button" class="bg-color-light text-color-dark p-2"
+             style="border-radius: 25%" data-action="register-event-form#closeRegisterModal" aria-label="Close">X</button>
+ {% endblock %}
+{% block modal_content %}
+    <div class="form_wrapper">
+        {{ form(form) }}
+    </div>
+{% endblock %}
+{% block extra_buttons %}
+    <button type="button" class="btn bg-color-light text-color-dark" data-action="register-event-form#closeRegisterModal" data-bs-dismiss="modal">Close</button>
+    <button type="button" class="btn bg-color-dark text-color-lighter" data-action="register-event-form#saveRegisterForm">Save changes</button>
+{% endblock %}

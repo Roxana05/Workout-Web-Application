@@ -1,0 +1,35 @@
+{% extends 'base.html.twig'%}
+
+{% block main_content %}
+   <div class="w-full h-full overflow-scroll">
+       <div class="p-5">
+           {% for event in events %}
+               <div class="p-3">
+                   <div class="p-2.5 pb-5 w-full h-56 rounded-xl bg-color-light">
+                       <div class="flex pr-5">
+                           <img class="p-5" style="width: auto; height: 100px" src="{{ asset("images/" ~ event.event.imageName ~ ".png") }}">
+                           <div class="w-full p-5 overflow-hidden">
+                               <h2 class="text-color-dark text-2xl font-bold">EXERCISE: {{ event.event.title }}</h2>
+                               <h2 class="text-color-dark text-2xl font-bold">{% if event.event.exerciseType == "weight" %} REPS: {{ event.reps }}; WEIGHT: {{ event.weight }} {% else %} WORKOUT DURATION: {{ event.duration }} minutes {% endif %}</h2>
+                               <p class="h-28 overflow-scroll">{{ event.event.description|nl2br}}</p>
+                           </div>
+
+                          <input type="checkbox" class="event-checkbox w-6" data-user_event="{{ event.id }}"
+                                   data-path_url="{{ path("change_event_status")}}" {% if event.completed %} checked {% endif %} >
+                       </div>
+                   </div>
+               </div>
+           {% endfor %}
+       </div>
+       <div class="p-5 flex" data-controller="modal-form">
+               <button class="inline-block bg-color-normal px-8 py-4 rounded-3xl font-bold text-color-dark md:mx-auto"
+               data-action="modal-form#openModal">
+                   - add another exercise -
+               </button>
+           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+           data-path_url="{{ path('create_new_event_submit', {'day': day}) }}">
+               {{ render(controller('App\\Controller\\EventsController::createNewEvent', {'day': day})) }}
+           </div>
+       </div>
+   </div>
+{% endblock %}

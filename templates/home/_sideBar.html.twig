@@ -1,0 +1,27 @@
+<nav class="bg-color-dark w-25 h-full" style="width: 250px;">
+    <ul class="space-y-8 text-md-center text-color-darkest">
+        <div class="flex items-center p-3 pl-5">
+            <img class="center-block p-5" style="width: auto; height: 100px" src="{{ asset("images/WhiteLogo.png") }}">
+        </div>
+        <li class="pl-7 py-3 {{ params.menu_item == 'home' ? "bg-color-lighter hover:bg-color-light" : "bg-color-dark hover:bg-color-dark" }}  flex items-center">
+            <img src="{{ asset("images/selected.png") }}" class="{%  if params.menu_item != 'home' %}invisible{% endif %} mr-2" alt="Active">
+            <a href="{{ path("home") }}" class="flex uppercase items-center font-sans {{ params.menu_item == 'home' ? "text-color-dark" : "text-color-lighter" }} ">
+                Home
+            </a>
+        </li>
+    {% for day in days %}
+        <li class="pl-7 py-3 {{ params.menu_item == day.day ? "bg-color-lighter hover:bg-color-light" : "bg-color-dark hover:bg-color-dark" }}  flex items-center">
+            <img src="{{ asset("images/selected.png") }}" class="{%  if params.menu_item != day.day %}invisible{% endif %} mr-2" alt="Active">
+            <a href="{{ path("view_day", {"date": day.date, "day":day.day}) }}" class="flex uppercase items-center font-sans {{ params.menu_item == day.day ? "text-color-dark" : "text-color-lighter" }} ">
+                {{ day.day }}: {{ day.date }}
+            </a>
+        </li>
+    {% endfor %}
+        <li class="pl-7 py-3 {{ params.menu_item == 'archive' ? "bg-color-lighter hover:bg-color-light" : "bg-color-dark hover:bg-color-dark" }}  flex items-center">
+            <img src="{{ asset("images/selected.png") }}" class="{%  if params.menu_item != 'archive' %}invisible{% endif %} mr-2" alt="Active">
+            <a href="{{ path("view_archive") }}" class="flex uppercase items-center font-sans {{ params.menu_item == 'archive' ? "text-color-dark" : "text-color-lighter" }} ">
+                View Previous Days
+            </a>
+        </li>
+    </ul>
+</nav>

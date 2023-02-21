@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block main_content %}
+    <div class="p-12">
+        <div class="w-full h-full overflow-scroll">
+            <div class="p-2.5 pb-5 w-full rounded-xl bg-color-light text-center" style="height: 600px;">
+                <h2 class="pt-10 text-5xl underline">Welcome to Base-Fit!</h2>
+                <h3 class="pt-10 text-4xl"> -- Your personal workout routine planner -- </h3>
+                <img class="p-5 pt-8 center-block" style="width: auto; height: 250px" src="{{ asset("images/ColorLogo.png") }}">
+                <div class="p-5 flex" data-controller="modal-form">
+                    <button class="inline-block center-block bg-color-accent_light px-8 py-4 rounded-3xl font-bold text-color-dark md:mx-auto"
+                            data-action="modal-form#openModal">
+                        - add another exercise -
+                    </button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+                         data-path_url="{{ path('create_new_event_submit', {'day': 'false'}) }}">
+                        {{ render(controller('App\\Controller\\EventsController::createNewEvent', {'day': 'false'})) }}
+                    </div>
+                </div>
+                {% if isAdmin %}
+                <div class="p-5 flex" data-controller="register-event-form">
+                    <button class="inline-block center-block bg-color-accent_light px-8 py-4 rounded-3xl font-bold text-color-dark md:mx-auto"
+                            data-action="register-event-form#openRegisterModal">
+                        - register new exercise -
+                    </button>
+                    <div class="modal fade" id="registerModal" aria-labelledby="registerModalLabel" tabindex="-1" aria-hidden="true"
+                         data-path_url="{{ path('register_new_event_submit') }}">
+                        {{ render(controller('App\\Controller\\EventsController::registerNewEvent')) }}
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

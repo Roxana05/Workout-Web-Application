@@ -1,0 +1,24 @@
+Optiuni "Type" :  Cardio
+			Weights
+
+
+
+
+Exercitii Cardio: Cycling | Walking | Running | Jump Rope | Upright Cycling
+
+
+
+Optiuni Weights: Arms | Back | Chest | Core | Legs
+
+
+
+
+Exercitii ARMS: Bicep Curl | Dumbbell Bicep Curl 1
+
+Exercitii BACK: Seated Row | Bent Over Row | Lat Pull-down 1
+
+Exercitii CHEST: Bench Press | Chest Dip | Chest Fly | Incline Bench Press | Incline Chest Press | Push-Ups
+
+Exercitii CORE: Decline Crunch | Sit Ups | Straight Legs Sit Ups | Side Bend
+
+Exercitii LEGS: Lunges | Dumbbell Lunges | Donkey Kicks
